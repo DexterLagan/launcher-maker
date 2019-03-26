@@ -21,24 +21,24 @@
       (if (non-empty-string? s) s #f)))
   
   (define (ok-callback)
-    (set! result (list (maybe-text text-field1)
-                       (maybe-text text-field2)
-                       (maybe-text text-field3)))
+    (set! result (list (maybe-text program-name-text-field)
+                       (maybe-text icon-path-text-field)
+                       (maybe-text binary-path-text-field)))
     (send dialog-frame show #f))
  
   (define dialog-frame
     ;             My Program v1.0              
     (centered-frame *appname* 320 100))
 
-  (define text-field1
+  (define program-name-text-field
     ;__________________________________________
     (text-field dialog-frame "Program Name:"))
   
-  (define text-field2
+  (define icon-path-text-field
     ;____________________________  Browse... 
     (text-field-browse-combo dialog-frame "Program Icon:"))
 
-  (define text-field3
+  (define binary-path-text-field
     ;____________________________  Browse... 
     (text-field-browse-combo dialog-frame "Program Binary:"))
 
@@ -59,11 +59,11 @@
 (define app-name (first user-selections))
 (when (not app-name) (exit 1))
 
-(define path-to-bin (second user-selections))
-(when (not path-to-bin) (exit 1))
-
-(define path-to-icon (third user-selections))
+(define path-to-icon (second user-selections))
 (when (not path-to-icon) (exit 1))
+
+(define path-to-bin (third user-selections))
+(when (not path-to-bin) (exit 1))
 
 ; build shortcut contents
 (define file-contents
